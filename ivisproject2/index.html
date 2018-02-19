@@ -8,11 +8,17 @@
 
 <!-- create container element for visualization -->
 <div id="buttons">
-    <button onclick="hideshow('2014');">2010-2014</button>
-    <button onclick="hideshow('2009');">2005-2009</button>
+    <button onclick= "window.location.href='text.html'">Analytical Trail</button> <br>
+    <button onclick="hideshow('2014');">2010-2014</button> <br>
+    <button onclick="hideshow('2009');">2005-2009</button> <br>
+    <button onclick="hideshow('2004');">2000-2004</button> <br>   
+    <button onclick="hideshow('1999');">1995-1999</button> <br>
+
 </div>
 <div id="viz2014" style="display: block"></div>
 <div id="viz2009" style="display: none"></div>
+<div id="viz2004" style="display: none"></div>
+<div id="viz1999" style="display: none"></div>
 
 <script>
   // instantiate d3plus
@@ -37,17 +43,49 @@
     .text("Country")             // key to use for display text
     .color("Year")           // key for coloring countries
     .tooltip(["Religion is important", "Religion is not important", "Believe in God", "Doesnt believe in God", "Believe in Hell", "Doesnt believe in Hell", "Children with religious faith", "Children without religious faith"])         // keys to place in tooltip
-    .draw()                   // finally, draw the visualization!
+    .draw()  
+
+    var vis2004 = d3plus.viz()
+    .container("#viz2004")        // container DIV to hold the visualization
+    .data(data2004)        // data to use with the visualization
+    .coords("http://d3plus.org/topojson/countries.json") // pass topojson coordinates
+    .type("geo_map")          // visualization type
+    .id("Code")            // key for which our data is unique on
+    .text("Country")             // key to use for display text
+    .color("Year")           // key for coloring countries
+    .tooltip(["Religion is important", "Religion is not important", "Believe in God", "Doesnt believe in God", "Believe in Hell", "Doesnt believe in Hell", "Children with religious faith", "Children without religious faith"])         // keys to place in tooltip
+    .draw()
+
+    var vis1999 = d3plus.viz()
+    .container("#viz1999")        // container DIV to hold the visualization
+    .data(data1999)        // data to use with the visualization
+    .coords("http://d3plus.org/topojson/countries.json") // pass topojson coordinates
+    .type("geo_map")          // visualization type
+    .id("Code")            // key for which our data is unique on
+    .text("Country")             // key to use for display text
+    .color("Year")           // key for coloring countries
+    .tooltip(["Religion is important", "Religion is not important", "Believe in God", "Doesnt believe in God", "Believe in Hell", "Doesnt believe in Hell", "Children with religious faith", "Children without religious faith"])         // keys to place in tooltip
+    .draw()
+                 // finally, draw the visualization!
 
 function hideshow(z) {
     var div2014 = document.getElementById("viz2014");
     var div2009 = document.getElementById("viz2009");
+    var div2004 = document.getElementById("viz2004");
+    var div1999 = document.getElementById("viz1999");
+
     div2014.style.display = "none";
     div2009.style.display = "none";
+    div2004.style.display = "none";
+    div1999.style.display = "none";
+
     switch (z)
     {
         case '2014': div2014.style.display = "block"; break;
         case '2009': div2009.style.display = "block"; break;
+        case '2004': div2004.style.display = "block"; break;
+        case '1999': div1999.style.display = "block"; break;
+
     }
 }
 
